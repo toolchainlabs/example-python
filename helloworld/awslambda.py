@@ -6,6 +6,6 @@ from helloworld.greet.greeting import Greeter
 
 
 def handler(event, context):
-    config = load_co     nfig()
+    config = load_config()
     greeter = Greeter(languages=config.languages, greetings=config.greetings)
     print(greeter.greet("world"))
