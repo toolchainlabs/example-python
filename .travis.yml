@@ -6,7 +6,6 @@
 env:
   global:
     - PANTS_CONFIG_FILES=pants.ci.toml
-
 os: linux
 dist: bionic
 language: python
