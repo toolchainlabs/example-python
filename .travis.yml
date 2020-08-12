@@ -6,6 +6,7 @@
 env:
   global:
     - PANTS_CONFIG_FILES=pants.ci.toml
+
 os: linux
 dist: bionic
 language: python
@@ -22,12 +23,3 @@ install:
 script:
   - ./pants --changed-since=origin/master lint
   - ./pants --changed-since=origin/master --changed-include-dependees=transitive test
-notifications:
-  webhooks:
-    urls:
-      -  https://afff243f88fd.ngrok.io/travis/repo/cosmo/kramer72/
-    on_success: always
-    on_failure: always
-    on_start:   always
-    on_cancel:  always
-    on_error:   always
