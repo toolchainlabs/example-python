@@ -1,7 +1,7 @@
 # example-python
 An example repository to demonstrate Python support in Pants.
 
-See [www.pantsbuild.org](https://www.pantsbuild.org/docs) for much more detailed documentation.
+See [pantsbuild.org](https://www.pantsbuild.org/docs) for much more detailed documentation.
 
 # Running Pants
 
