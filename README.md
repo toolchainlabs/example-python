@@ -1,7 +1,7 @@
 # example-python
 An example repository to demonstrate Python support in Pants.
 
-See [www.pantsbuild.org](https://www.pantsbuild.org/docs) for much more detailed documentation.
+See [pantsbuild.org](https://www.pantsbuild.org/docs) for much more detailed documentation.
 
 # Running Pants
 
@@ -141,7 +141,7 @@ Try these out in this repo!
 ## Run `setup.py` commands
 
 ```
-./pants setup-py --args="bdist_wheel" helloworld/util  # Build a wheel.
+./pants setup-py --args="bdist_wheel" helloworld/util:dist  # Build a wheel.
 ```
 
 ## Build an AWS Lambda
