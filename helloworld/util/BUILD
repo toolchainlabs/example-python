@@ -18,7 +18,6 @@ python_library(
     dependencies=[
         "//:setuptools",
         "//:translate",
-        "helloworld/util/proto",
     ],
 )
 
@@ -26,12 +25,7 @@ python_tests(
     name='tests',
     # `sources` defaults to ['*_test.py', 'test_*.py', 'conftest.py'].
     dependencies=[
-        ":config_loader_test_data",
         ":util",
     ],
 )
 
-resources(
-    name='config_loader_test_data',
-    sources=['config_loader_test_data.json'],
-)

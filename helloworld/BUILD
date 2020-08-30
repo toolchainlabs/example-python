@@ -41,7 +41,6 @@ python_library(
     dependencies = [
         ":config_file",
         "helloworld/util",
-        "helloworld/util/proto",
     ],
 )
 

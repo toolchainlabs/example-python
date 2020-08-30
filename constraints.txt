@@ -24,12 +24,12 @@ pluggy==0.13.1
 pre-commit==1.21.0 ; python_version == '2.7'
 pre-commit==2.3.0 ; python_version > '2.7'
 protobuf==3.11.3
-py==1.8.1
+py==1.8.2
 pyparsing==2.4.7
 PyYAML==5.3.1
 requests==2.23.0
 six==1.14.0
-toml==0.10.0
+toml==0.10.1
 tox==3.15.0
 translate==3.5.0
 urllib3==1.25.9
