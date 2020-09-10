@@ -140,7 +140,7 @@ https://raw.githubusercontent.com/pantsbuild/setup/d1da382f6de0420940ec6007a39cb
 }
 
 function determine_default_python_exe {
-  for version in '3.6' '3.7' '3.8' '3.9'; do
+  for version in '3.7' '3.8' '3.9'; do
     interpreter_path="$(command -v "python${version}")"
     if [[ -z "${interpreter_path}" ]]; then
       continue
@@ -164,12 +164,12 @@ function determine_python_exe {
   fi
   python_exe="$(get_exe_path_or_die "${python_bin_name}")"
   major_minor_version="$(get_python_major_minor_version "${python_exe}")"
-  for valid_version in '36' '37' '38' '39'; do
+  for valid_version in '37' '38' '39'; do
     if [[ "${major_minor_version}" == "${valid_version}" ]]; then
       echo "${python_exe}" && return 0
     fi
   done
-  die "Invalid Python interpreter version for ${python_exe}. Pants requires Python 3.6+ to run."
+  die "Invalid Python interpreter version for ${python_exe}. Pants requires Python 3.7+ to run."
 }
 
 # TODO(John Sirois): GC race loser tmp dirs leftover from bootstrap_XXX

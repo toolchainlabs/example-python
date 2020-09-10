@@ -7,11 +7,19 @@ pantsd = true  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
   'pants.backend.awslambda.python',
+  # 'pants.backend.codegen.protobuf.python',
   'pants.backend.python',
   'pants.backend.python.lint.docformatter',
   'pants.backend.python.lint.black',
   'pants.backend.python.lint.flake8',
   'pants.backend.python.lint.isort',
+  "toolchain.pants.auth",
+  "toolchain.pants.buildsense",
+  "toolchain.pants.common",
+]
+
+plugins = [
+  "toolchain.pants.buildsense.plugin==0.0.3",
 ]
 
 [source]
@@ -25,6 +33,16 @@ root_patterns = ["/"]
 interpreter_constraints = [">=3.7"]
 # Use a lockfile. See https://www.pantsbuild.org/docs/python-third-party-dependencies.
 requirement_constraints = "constraints.txt"
+
+[run-tracker]
+stats_option_scopes_to_record = ["GLOBAL"]
+stats_version = 2
+
+[toolchain-setup]
+repo = "example-python"
+
+[python-repos]
+indexes.add = ["https://test.pypi.org/simple/"]
 
 [flake8]
 config = ".flake8"
