@@ -22,6 +22,9 @@ plugins = [
   "toolchain.pants.buildsense.plugin==0.0.3",
 ]
 
+streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
+streaming_workunits_report_interval = 1
+
 [source]
 # The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
 root_patterns = ["/"]
