@@ -21,3 +21,5 @@ resolver_jobs = 1
 
 [auth]
 from_env_var = "TC_AUTH"
+customer_slug="toolchainlabs"
+ci_env_vars= ["TRAVIS", "TRAVIS_JOB_ID", "TRAVIS_BUILD_ID", "TRAVIS_PULL_REQUEST"]
