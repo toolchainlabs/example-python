@@ -2,7 +2,7 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "2.0.0a2"
+pants_version = "2.0.0a3"
 pantsd = true  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
@@ -19,7 +19,7 @@ backend_packages.add = [
 ]
 
 plugins = [
-  "toolchain.pants.buildsense.plugin==0.0.3",
+  "toolchain.pants.buildsense.plugin==0.0.4",
 ]
 
 streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
