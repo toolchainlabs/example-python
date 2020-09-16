@@ -1,0 +1,32 @@
+[GLOBAL]
+remote_execution = true
+remote_execution_server = "build.toolchain.com:443"
+remote_store_server = "build.toolchain.com:443"
+remote_ca_certs_path = "/etc/ssl/certs/ca-certificates.crt"
+remote_instance_name = "main"
+remote_execution_extra_platform_properties = [
+  # This allows network requests, e.g. to resolve dependencies with Pex.
+  "execution-policy=network",
+  "execution-policy=container-image=pants-remote-execution:5175b2b04aa895732ecdcb98af9481866472a0bf",
+]
+process_execution_remote_parallelism = 10
+
+[python-setup]
+interpreter_search_paths = [
+  # These are the interpreter paths we set up on the remote container.
+  "/pyenv-docker-build/versions/3.8.5/bin:/pyenv-docker-build/versions/3.7.8/bin:/pyenv-docker-build/versions/3.6.11/bin:/pyenv-docker-build/versions/2.7.18/bin",
+]
+
+[pex]
+executable_search_paths = [
+  # These are the interpreter paths we set up on the remote container. We need to specify these
+  # because many of our tests for the Python backend need to discover Python interpreters.
+  "/pyenv-docker-build/versions/3.8.5/bin:/pyenv-docker-build/versions/3.7.8/bin:/pyenv-docker-build/versions/3.6.11/bin:/pyenv-docker-build/versions/2.7.18/bin",
+  # The remote container has binaries like `ld` and `gcc` in /usr/bin.
+  "/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin",
+]
+
+[python-native-code]
+ld_flags = []
+cpp_flags = []
+
