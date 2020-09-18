@@ -13,17 +13,7 @@ backend_packages.add = [
   'pants.backend.python.lint.black',
   'pants.backend.python.lint.flake8',
   'pants.backend.python.lint.isort',
-  "toolchain.pants.auth",
-  "toolchain.pants.buildsense",
-  "toolchain.pants.common",
 ]
-
-plugins = [
-  "toolchain.pants.buildsense.plugin==0.0.4",
-]
-
-streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
-streaming_workunits_report_interval = 1
 
 [source]
 # The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
@@ -40,9 +30,6 @@ requirement_constraints = "constraints.txt"
 [run-tracker]
 stats_option_scopes_to_record = ["GLOBAL"]
 stats_version = 2
-
-[toolchain-setup]
-repo = "example-python"
 
 [python-repos]
 indexes.add = ["https://test.pypi.org/simple/"]
