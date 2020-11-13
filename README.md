@@ -16,7 +16,7 @@ in `pants.toml`).
 Pants commands are called _goals_. You can get a list of goals with
 
 ```
-./pants goals
+./pants help goals
 ```
 
 # Targets
@@ -52,6 +52,18 @@ If you want Pants itself to expand the globs (which is sometimes necessary), you
 
 ```
 ./pants lint 'helloworld/util/*.py'
+```
+
+You can run on all changed files:
+
+```
+./pants --changed-since=HEAD lint
+```
+
+You can run on all changed files, and any of their "dependees":
+
+```
+./pants --changed-since=HEAD --changed-dependees=transitive test
 ```
 
 ## Target specifications
@@ -99,15 +111,21 @@ Try these out in this repo!
 ## List targets
 
 ```
-./pants list helloworld::  # All targets.
+./pants list ::  # All targets.
 ./pants list 'helloworld/**/*.py'  # Just targets containing Python code.
 ```
 
 ## Run linters and formatters
 
 ```
-./pants lint helloworld::
+./pants lint ::
 ./pants fmt 'helloworld/**/*.py'
+```
+
+## Run MyPy
+
+```
+./pants typecheck ::
 ```
 
 ## Run tests
@@ -119,10 +137,10 @@ Try these out in this repo!
 ./pants test helloworld/util/lang_test.py -- -k test_language_translator  # Run just this one test.
 ```
 
-## Create a runnable binary
+## Create a PEX binary
 
 ```
-./pants binary helloworld/main.py helloworld/main_py2.py
+./pants package helloworld/main.py helloworld/main_py2.py
 ```
 
 ## Run a binary
@@ -138,22 +156,27 @@ Try these out in this repo!
 ./pants repl --shell=ipython helloworld/greet
 ```
 
-## Run `setup.py` commands
+## Build a wheel / generate `setup.py`
+
+This will build both a `.whl` bdist and a `.tar.gz` sdist.
 
 ```
-./pants setup-py --args="bdist_wheel" helloworld/util:dist  # Build a wheel.
+./pants package helloworld/util:dist
 ```
+
+We can also remove the `setup_py_commands` field from `helloworld/util/BUILD` to have Pants instead generate a 
+`setup.py` file, with all the relevant code in a chroot.
 
 ## Build an AWS Lambda
 
 (This example only works on Linux because it has an sdist. See https://www.pantsbuild.org/docs/awslambda-python.)
 
 ```
-./pants awslambda helloworld:helloworld-awslambda
+./pants package helloworld:helloworld-awslambda
 ```
 
 ## Count lines of code
 
 ```
-./pants cloc '**/*'
+./pants count-loc '**/*'
 ```

@@ -2,17 +2,21 @@
 # Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 [GLOBAL]
-pants_version = "2.0.0.dev9"
+pants_version = "2.1.0rc0"
 pantsd = true  # Enable the Pants daemon for better performance.
 
 backend_packages.add = [
-  'pants.backend.awslambda.python',
-  'pants.backend.codegen.protobuf.python',
-  'pants.backend.python',
-  'pants.backend.python.lint.docformatter',
-  'pants.backend.python.lint.black',
-  'pants.backend.python.lint.flake8',
-  'pants.backend.python.lint.isort',
+  "pants.backend.awslambda.python",
+  "pants.backend.codegen.protobuf.python",
+  "pants.backend.python",
+  "pants.backend.python.lint.docformatter",
+  "pants.backend.python.lint.black",
+  "pants.backend.python.lint.flake8",
+  "pants.backend.python.lint.isort",
+  "pants.backend.python.typecheck.mypy",
+  # Adds the `py-constraints` goal, as this example repository has
+  # both Python 2 and Python 3 code.
+  "pants.backend.python.mixed_interpreter_constraints",
 ]
 
 [source]
@@ -20,21 +24,28 @@ backend_packages.add = [
 root_patterns = ["/"]
 
 [python-setup]
-# The default interpreter compatibility for code in this repo. Individual targets can ovverride
-#  this with the `compatibility` field. See
+# The default interpreter compatibility for code in this repo. Individual targets can override
+#  this with the `interpreter_constraints` field. See
 #  https://www.pantsbuild.org/docs/python-interpreter-compatibility.
 interpreter_constraints = [">=3.7"]
-# Use a lockfile. See https://www.pantsbuild.org/docs/python-third-party-dependencies.
+# Use a constraints file. See https://www.pantsbuild.org/docs/python-third-party-dependencies.
 requirement_constraints = "constraints.txt"
+# We search for interpreters on both on the $PATH and in the `$(pyenv root)/versions` folder.
+#  If you're using macOS, you may want to leave off the <PATH> entry to avoid using the
+#  problematic system Pythons. See
+#  https://www.pantsbuild.org/docs/python-interpreter-compatibility#changing-the-interpreter-search-path.
+interpreter_search_paths = ["<PATH>", "<PYENV>"]
 
-[protoc]
-runtime_targets = ["//:protobuf"]
+[python-protobuf]
+# See https://www.pantsbuild.org/docs/protobuf.
+runtime_dependencies = ["//:protobuf"]
+mypy_plugin = true
 
 [flake8]
-config = ".flake8"
+config = "build-support/.flake8"
 
 [isort]
 config = [".isort.cfg"]
 
-[python-infer]
-imports = false
+[mypy]
+config = "build-support/mypy.ini"
