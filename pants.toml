@@ -17,7 +17,17 @@ backend_packages.add = [
   # Adds the `py-constraints` goal, as this example repository has
   # both Python 2 and Python 3 code.
   "pants.backend.python.mixed_interpreter_constraints",
+  "toolchain.pants.auth",
+  "toolchain.pants.buildsense",
+  "toolchain.pants.common",
 ]
+
+plugins = [
+  "toolchain.pants.buildsense.plugin==0.0.6",
+]
+
+streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
+streaming_workunits_report_interval = 1
 
 [source]
 # The Python source root is the repo root. See https://www.pantsbuild.org/docs/source-roots.
@@ -49,3 +59,17 @@ config = [".isort.cfg"]
 
 [mypy]
 config = "build-support/mypy.ini"
+
+[python-repos]
+indexes.add = ["https://test.pypi.org/simple/"]
+
+[run-tracker]
+stats_option_scopes_to_record = ["*"]
+
+[toolchain-setup]
+repo = "example-python"
+
+[auth]
+from_env_var = "TC_AUTH"
+customer = "toolchainlabs"
+ci_env_variables = ["TRAVIS", "TRAVIS_JOB_ID", "TRAVIS_BUILD_ID", "TRAVIS_PULL_REQUEST"]
