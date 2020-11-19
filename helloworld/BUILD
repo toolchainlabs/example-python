@@ -7,8 +7,6 @@ pex_binary(
     entry_point="helloworld.main",
 )
 
-
-
 pex_binary(
     name="helloworld_py2",
     sources=["main_py2.py"],
