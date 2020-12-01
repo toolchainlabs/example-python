@@ -23,7 +23,7 @@ backend_packages.add = [
 ]
 
 plugins = [
-  "toolchain.pants.buildsense.plugin==0.0.6",
+  "toolchain.pants.buildsense.plugin==0.0.7",
 ]
 
 streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
