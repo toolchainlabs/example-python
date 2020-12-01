@@ -29,6 +29,7 @@ install:
   - ./pants --version  # This will bootstrap Pants
 
 script:
+  - env
   # We also smoke test that our release process will work by running `package`.
   - ./pants lint typecheck test package '::'
   - ./pants run helloworld/main.py
