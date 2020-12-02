@@ -23,7 +23,7 @@ backend_packages.add = [
 ]
 
 plugins = [
-  "toolchain.pants.buildsense.plugin==0.0.7",
+  "toolchain.pants.buildsense.plugin==0.1.0",
 ]
 
 streaming_workunits_handlers = ["toolchain.pants.buildsense.reporter.Reporter"]
@@ -59,9 +59,6 @@ config = [".isort.cfg"]
 
 [mypy]
 config = "build-support/mypy.ini"
-
-[python-repos]
-indexes.add = ["https://test.pypi.org/simple/"]
 
 [run-tracker]
 stats_option_scopes_to_record = ["*"]
