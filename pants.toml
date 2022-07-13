@@ -17,8 +17,12 @@ plugins = [
 ]
 
 [toolchain-setup]
-repo = "pants"
-org = "pantsbuild"
+repo = "example-python"
+org = "toolchainlabs"
+
+[buildsense]
+collect_platform_data = true
+log_final_upload_latency = true
 
 
 [anonymous-telemetry]
