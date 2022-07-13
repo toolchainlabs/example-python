@@ -12,6 +12,15 @@ backend_packages.add = [
   "pants.backend.python.typecheck.mypy",
 ]
 
+plugins = [
+  "toolchain.pants.plugin==0.20.0",
+]
+
+[toolchain-setup]
+repo = "pants"
+org = "pantsbuild"
+
+
 [anonymous-telemetry]
 enabled = true
 repo_id = "3B1D361B-E9F1-49A8-B761-03DCC41FD58E"
